@@ -136,15 +136,21 @@ function complex.new(real, imag)
     end
   end
 
+  --[[ FIXME
   function iface.pow(num)
     if type(num) == 'number' then
-      return complex.new(iface.real() ^ num, iface.imag() ^ num)
+      local z = iface + 0
+      for i = 2, num do
+        z = z * z
+      end
+      return z
     elseif type(num) == 'table' then
       return iface.ln().mul(num).exp()
     else
       err()
     end
   end
+  --]]
 
   return setmetatable(iface, {
     __name = 'complex number',
